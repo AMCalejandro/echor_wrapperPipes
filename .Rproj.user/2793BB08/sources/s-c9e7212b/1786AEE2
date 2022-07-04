@@ -1,0 +1,26 @@
+{
+    "id": "1786AEE2",
+    "path": "~/Data/WorkingDirectory/Development_Stuff/ECHOLOCATOR_WORKFLOW/R/utils.R",
+    "project_path": "R/utils.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1656934547808.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "84,29",
+        "scrollLine": "60"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1656940343,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1656940343687,
+    "read_only": false,
+    "read_only_alternatives": []
+}

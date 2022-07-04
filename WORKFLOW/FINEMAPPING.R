@@ -28,11 +28,20 @@ library(here) # Efficient path management within the R project
 # Read file with metadata to perform finemapping
 args <- commandArgs(trailingOnly = TRUE)
 metadata = fread(args[1])
-source(here::here("R", "utils_v2.R"))
-
+source(here::here("R", "utils.R"))
 
 # Create / Localice RS dir
 make_results_dir(metadata[2])
+
+
+
+# Noramlly from METAL software the SNP name is MarkerName. Rename
+data = fread(metadata[1])
+if("MarkerName" %in% colnames(data)) {
+  data = data %>% rename(SNP = MarkerName) %>%
+    select(SNP, everything())
+  fwrite(data, metadata[1], row.names = F, col.names = T, sep ="\t", quote = F)
+}
 
 
 # Perform minor processing in the input df

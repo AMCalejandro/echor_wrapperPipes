@@ -14,7 +14,6 @@
 # Activate echoR conda env
 #system("conda activate echoR")
 
-
 # Load libraries
 library(data.table) # Efficient multiprocessor data reading/writing/processing
 library(echolocatoR) # To fo the finemapping

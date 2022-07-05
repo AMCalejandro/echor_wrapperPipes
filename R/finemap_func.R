@@ -60,7 +60,7 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
               server = T,
               ## Generate multiple plots of different window sizes;
               ### all SNPs, 4x zoomed-in, and a 50000bp window
-              plot.zoom = c("all","4x","10x", "30x"),
+              plot.zoom = c("1x","4x","10x"),
 
               plot.Nott_epigenome=F,
               plot.Nott_show_placseq = F,

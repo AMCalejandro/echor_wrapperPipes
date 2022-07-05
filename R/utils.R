@@ -3,13 +3,18 @@
 SS_check = function(data, metadata) {
   mydata = data
   firstchar = substr(colnames(mydata)[1],1,1)
+  
+  # Sort input file based on CHR POS - Tabix crashes otherwise
+  mydata = mydata %>% arrange(CHR, POS)
+  
 
   if (firstchar != "#") {
     colnames(mydata)[1] <- paste0("#", colnames(mydata)[1])
   }
   
+  
   message("Saving data in vcf format and tsv extension in the working dir")
-  new_path = paste(metadata[2], metadata[4], sep="/")
+  new_path = paste(metadata[2], metadata[3], sep="/")
   fwrite(mydata, new_path, col.names = T, row.names = F, sep ="\t", quote = F)
   
   # Apending new path to metadata file
@@ -72,8 +77,11 @@ data = fread("EARLY_PD/POST_GWAS/ECHOLOCATOR/for_echolocatoR_axialOutcome_3.tsv"
 data = data %>% arrange(Pval)
 data = head(data)
 
-make_topSNPs = function(data, build = "hg19", snp_column = "#SNP") {
-  
+make_topSNPs = function(data,
+                        build = "hg19", 
+                        write.out = T,
+                        custom_gene = NULL,
+                        .metadata_file = metadata) {
   # I need to do this in advance to enter vautils function
   data = data %>%
     dplyr::rename(rsid = `#SNP`, 
@@ -92,37 +100,42 @@ make_topSNPs = function(data, build = "hg19", snp_column = "#SNP") {
       mutate(distance = recode(distance, "intergenic" = "0"))
   }
   
-  snps_mapped = snps_mapped %>%
+  snps_mapped_filt = snps_mapped %>%
     mutate(distance = abs(as.numeric(distance))) %>%
     arrange(distance) %>%
     group_by(rsid) %>%
-    filter(row_number() == 1) 
+    filter(row_number() == 1) %>%
+    ungroup()
   
-  snps_mapped = data.frame(Locus = snps_mapped$GENE,
-                     Gene =snps_mapped$GENE,
-                     CHR = snps_mapped$chromosome,
-                     POS = snps_mapped$position,
-                     SNP = snps_mapped$rsid)
+  if (!is.null(custom_gene)) {
+     custom_gene_filt = snps_mapped %>%
+       dplyr::filter(GENE %in% custom_gene)
+     snps_mapped_filt = rbind(snps_mapped_filt, custom_gene_filt)
+  }
+  
+  snps_mapped_filt = data.frame(Locus = snps_mapped_filt$GENE,
+                     Gene =snps_mapped_filt$GENE,
+                     CHR = snps_mapped_filt$chromosome,
+                     POS = snps_mapped_filt$position,
+                     SNP = snps_mapped_filt$rsid)
   
   
   tmp_2 = data %>% 
-    dplyr::filter(rsid %in% snps_mapped$SNP) %>%
+    dplyr::filter(rsid %in% snps_mapped_filt$SNP) %>%
     dplyr::select(SNP = rsid, Effect, P = Pval)
-  mydf = snps_mapped %>% inner_join(tmp_2)
+  mydf = snps_mapped_filt %>% inner_join(tmp_2)
   
+  
+  if (write.out) {
+    fwrite(mydf, paste(.metadata_file[1],"top_SNPs.txt", sep = "/"),
+           col.names = T,
+           row.names = F,
+           sep ="\t",
+           quote = F)
+  }
   return(mydf)
 }
 
-
-
-
-  
-  message("\n\n Writing top_SNPs... \n\n")
-  fwrite(mydf, paste0(metadata[1],"/topSNPs.txt"),
-         quote = F, col.names=T, row.names=F, sep = "\t")
-  #print(mydf)
-  
-}
 
 
 

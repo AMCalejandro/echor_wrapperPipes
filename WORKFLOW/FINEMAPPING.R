@@ -42,7 +42,7 @@ fullRS_path = metadata[2]
 newSS_name = metadata[3]
 
 
-source(here::here("R", "utils.R"))
+source(here::here("R/mnt/rreal/RDS/acarrasco/TOOLS/echor_wrapperPipes", "utils.R"))
 
 # Create RS if not exist
 make_results_dir(fullRS_path)
@@ -81,11 +81,10 @@ top_SNPs = make_topSNPs(lead_variants, build = "hg19",
              .metadata_file = metadata,
              custom_gene = "ACP6")
 
-
 ## At this point
 # We have the SS GWAS updates if needed, RS updated if needed, top_SNPs file created
 # We are ready to run finemap_loci
-source(here::here("R", "finemap_func.R"))
+source(here::here("R/mnt/rreal/RDS/acarrasco/TOOLS/echor_wrapperPipes", "finemap_func.R"))
 finemapping_wrapper(top_SNPs = top_SNPs,
                     study_name = "PD_GWAS",
                     study_type = "motor_progression",

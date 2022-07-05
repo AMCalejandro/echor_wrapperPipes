@@ -56,7 +56,8 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
                    
               # PLOT ARGUMENTS
               ## general
-              plot.types = c("fancy"),
+              plot.types = c("simple"),
+              server = T,
               ## Generate multiple plots of different window sizes;
               ### all SNPs, 4x zoomed-in, and a 50000bp window
               plot.zoom = c("all","4x","10x", "30x"),

@@ -4,7 +4,10 @@ SS_check = function(data, metadata) {
   mydata = data
   firstchar = substr(colnames(mydata)[1],1,1)
   
+  
   # Sort input file based on CHR POS - Tabix crashes otherwise
+  # Also, use scipen option to pevent scientific notation
+  options(scipen=999)
   mydata = mydata %>% arrange(CHR, POS)
   
 

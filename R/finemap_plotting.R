@@ -76,7 +76,7 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
 
 
 
-
+}
 
 
 
@@ -107,12 +107,13 @@ get_regional_plots = function(locus,
   locus_dir = paste(.metadata, locus, sep = "/")
   
   trk_plot <- PLOT.locus(finemap_dat=multifinemap, 
-                         LD_matrix=ldmatrix, 
+                         LD_matrix= as.matrix(ldmatrix), 
                          LD_reference=LD_reference,
                          locus_dir=locus_dir,  
                          save_plot=T,
                          show_plot=show_plot,
-                         plot.zoom=plot.zoom)
+                         plot.zoom=plot.zoom, 
+                         conda_env = "echoR")
   
   names_old = list.files(locus_dir, pattern="^multiview")
   names_new = paste0("finemapplot_",list.files(locus_dir, pattern="^multiview"))

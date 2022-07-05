@@ -91,7 +91,7 @@ top_SNPs = make_topSNPs(lead_variants, build = "hg19",
 ## At this point
 # We have the SS GWAS updates if needed, RS updated if needed, top_SNPs file created
 # We are ready to run finemap_loci
-source("/mnt/rreal/RDS/acarrasco/TOOLS/echor_wrapperPipes/R/finemap_func.R")
+source("/mnt/rreal/RDS/acarrasco/TOOLS/echor_wrapperPipes/R/finemap_plotting.R")
 finemapping_wrapper(top_SNPs = top_SNPs,
                     study_name = "PD_GWAS",
                     study_type = "motor_progression",

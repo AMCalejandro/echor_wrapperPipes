@@ -74,12 +74,20 @@ if ("MarkerName" %in% colnames(data)) {
 metadata = c(metadata[2], metadata[4])
 
 # Get the top_SNPs file
+# data_qc = fread(metadata[2])
+# lead_variants = gwas_lead_snps(data_qc, pval_thresh)
+# top_SNPs = make_topSNPs(lead_variants, build = "hg19", 
+#              write.out = T, 
+#              .metadata_file = metadata,
+#              custom_gene = "ACP6")
+
+# Test for non significant loci
 data_qc = fread(metadata[2])
-lead_variants = gwas_lead_snps(data_qc)
+lead_variants = gwas_lead_snps(data_qc, pval_thres = 5e-7)
 top_SNPs = make_topSNPs(lead_variants, build = "hg19", 
-             write.out = T, 
-             .metadata_file = metadata,
-             custom_gene = "ACP6")
+                        write.out = T, 
+                        .metadata_file = metadata,
+                        custom_gene = NULL)
 
 ## At this point
 # We have the SS GWAS updates if needed, RS updated if needed, top_SNPs file created

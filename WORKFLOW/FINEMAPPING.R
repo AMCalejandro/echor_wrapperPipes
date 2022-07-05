@@ -28,18 +28,21 @@ library(colochelpR, lib.loc = "/mnt/rreal/RDS/acarrasco/R_libs")
 library(SNPlocs.Hsapiens.dbSNP144.GRCh37, lib.loc = "/mnt/rreal/RDS/acarrasco/R_libs")
 
 
+
 args <- commandArgs(trailingOnly = TRUE)
-metadata = fread(args[1], header = F)
-metadata = as.vector(metadata$V1)
+metadata = readLines(args[1])
+# Making sure I remove any problematic white spaces
+metadata = metadata[which(metadata!="")]
+metadata = trimws(gsub("\\s+", "", data))
 
-
-source(here::here("R", "utils.R"))
-
-
+# Storing metadata information
 # This script should take the data harmonised. Perform harmonization outside this script
 fullSS_path = metadata[1]
 fullRS_path = metadata[2]
 newSS_name = metadata[3]
+
+
+source(here::here("R", "utils.R"))
 
 # Create RS if not exist
 make_results_dir(fullRS_path)

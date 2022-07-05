@@ -89,7 +89,7 @@ finemapping_wrapper(top_SNPs = top_SNPs,
                     study_name = "PD_GWAS",
                     study_type = "motor_progression",
                     build = "hg19",
-                    finemap_tools = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SISE"),
+                    finemap_tools = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SUSIE"),
                     mean_SS = 3500)
 
 

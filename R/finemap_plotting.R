@@ -70,10 +70,10 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
   
   
   # Then I write the full path to be used for the plotting workflow
-  fwrite(list(paste(.metadata[1],study_type,study_name, sep = "/")),
-         paste(.metadata[1], "metadata_2.txt", sep = "/"),
-         quote= F, sep ="", col.names=F, row.names=F)
-}
+  writeLines(paste(.metadata[1],study_type,study_name, sep = "/"),
+         paste(.metadata[1], "metadata_2.txt", sep = "/") )
+  
+
 
 
 

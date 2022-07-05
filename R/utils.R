@@ -72,11 +72,6 @@ make_results_dir <- function(results_path){
 
 
 
-
-data = fread("EARLY_PD/POST_GWAS/ECHOLOCATOR/for_echolocatoR_axialOutcome_3.tsv")
-data = data %>% arrange(Pval)
-data = head(data)
-
 make_topSNPs = function(data,
                         build = "hg19", 
                         write.out = T,

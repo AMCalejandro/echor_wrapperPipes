@@ -33,7 +33,7 @@ args <- commandArgs(trailingOnly = TRUE)
 metadata = readLines(args[1])
 # Making sure I remove any problematic white spaces
 metadata = metadata[which(metadata!="")]
-metadata = trimws(gsub("\\s+", "", data))
+metadata = trimws(gsub("\\s+", "", metadata))
 
 # Storing metadata information
 # This script should take the data harmonised. Perform harmonization outside this script

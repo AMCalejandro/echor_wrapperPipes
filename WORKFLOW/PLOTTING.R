@@ -16,10 +16,12 @@ metadata2 = trimws(gsub("\\s+", "", metadata2))
 
 # Find the number of
 loci_to_plot = list.files(metadata2[1])
-LD_reference <- "UKB"
-plot.zoom = c("All")
+ld_ref <- "UKB"
+plot.zoom = c("All", "4x", "10x", "20x")
 show_plot=T
 
-
 source("/mnt/rreal/RDS/acarrasco/TOOLS/echor_wrapperPipes/R/finemap_plotting.R")
-map(loci_to_plot, get_regional_plots)
+map(loci_to_plot, ~get_regional_plots(.x, 
+                                      plot.zoom = plot.zoom,
+                                      ld_ref = ld_ref))
+

@@ -9,6 +9,7 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
                                build = "hg19",
                                finemap_tools = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SUSIE"),
                                mean_SS = NULL,
+                               ld_ref = "UKB",
                                .metadata = metadata) {
   
   
@@ -17,10 +18,10 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
   # Finemappinc_quant
   echolocatoR::finemap_loci(top_SNPs = top_SNPs, loci = top_SNPs$Locus,
                 dataset_name = study_name, dataset_type = study_type,
-                force_new_subset = F, force_new_LD = F,
+                force_new_subset = F, force_new_LD = T,
                 force_new_finemap = T, remove_tmps = F,
                
-                # SUMMARY STATS ARGUMENTS
+               # SUMMARY STATS ARGUMENTS
                fullSS_genome_build = build,
                fullSS_path = .metadata[2], results_dir = .metadata[1], query_by = "tabix",
                chrom_col = "CHR", position_col = "POS", snp_col = "SNP",
@@ -45,7 +46,7 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
                consensus_threshold = 2,
                # LD ARGUMENTS
                LD_genome_build = build,
-               LD_reference = "UKB",
+               LD_reference = 
                superpopulation = "EUR",
                download_method = "axel",
                              
@@ -56,24 +57,19 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
                    
               # PLOT ARGUMENTS
               ## general
-              plot.types = c("simple"),
+              plot.types = c("fancy"),
               server = T,
               ## Generate multiple plots of different window sizes;
               ### all SNPs, 4x zoomed-in, and a 50000bp window
-              plot.zoom = c("1x","4x","10x"),
-
-              plot.Nott_epigenome=F,
-              plot.Nott_show_placseq = F,
+              plot.zoom = c("All", "1x","4x","10x"),
               verbose = TRUE,
               # ENVIRONMENT ARGS
               conda_env= "echoR" )
-  
   
   # Then I write the full path to be used for the plotting workflow
   writeLines(paste(.metadata[1],study_type,study_name, sep = "/"),
          paste(.metadata[1], "metadata_2.txt", sep = "/") )
   
-
 
 
 }

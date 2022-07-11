@@ -46,7 +46,7 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
                consensus_threshold = 2,
                # LD ARGUMENTS
                LD_genome_build = build,
-               LD_reference = 
+               LD_reference = ld_ref,
                superpopulation = "EUR",
                download_method = "axel",
                              

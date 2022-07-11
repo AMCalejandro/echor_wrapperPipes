@@ -79,8 +79,8 @@ finemapping_wrapper = function(top_SNPs = top_SNPs,
 
 
 get_regional_plots = function(locus, 
-                              LD_reference = "UKB",
-                              plot.zoom = c("All"),
+                              ld_ref = "UKB",
+                              plot.zoom = c("All", "4X", "10x", "20x"),
                               show_plot = T,
                               .metadata = metadata2) {
   
@@ -102,6 +102,7 @@ get_regional_plots = function(locus,
   
   locus_dir = paste(.metadata, locus, sep = "/")
   
+  # To get the finemapping plot
   trk_plot <- PLOT.locus(finemap_dat=multifinemap, 
                          LD_matrix= as.matrix(ldmatrix), 
                          LD_reference=LD_reference,
@@ -116,6 +117,7 @@ get_regional_plots = function(locus,
   file.rename(paste(locus_dir, names_old, sep = "/"),
               paste(locus_dir, names_new, sep = "/"))
   
+  # To get the locus plot with FANTOM_ENHANCER data
   trk_plot <- PLOT.locus(finemap_dat=multifinemap, 
                          LD_matrix=ldmatrix, 
                          LD_reference=LD_reference,
@@ -134,6 +136,7 @@ get_regional_plots = function(locus,
               paste(locus_dir, names_new, sep = "/"))
   
   
+  # To get the locus plot with Roadmap brain tissues data
   trk_plot <- PLOT.locus(finemap_dat=multifinemap, 
                          LD_matrix=ldmatrix, 
                          LD_reference=LD_reference,
@@ -153,7 +156,7 @@ get_regional_plots = function(locus,
               paste(locus_dir, names_new, sep = "/"))
   
   
-  
+  # To get the locus plot with Nott et al data
   trk_plot <- PLOT.locus(finemap_dat=multifinemap, 
                          LD_matrix=ldmatrix, 
                          LD_reference=LD_reference,
@@ -174,5 +177,4 @@ get_regional_plots = function(locus,
   names_new = paste0("NOTTplot_",list.files(locus_dir, pattern="^multiview"))
   file.rename(paste(locus_dir, names_old, sep = "/"),
               paste(locus_dir, names_new, sep = "/"))
-  
 }

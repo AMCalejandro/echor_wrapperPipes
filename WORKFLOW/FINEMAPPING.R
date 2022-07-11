@@ -97,4 +97,6 @@ finemapping_wrapper(top_SNPs = top_SNPs,
                     study_type = "motor_progression",
                     build = "hg19",
                     finemap_tools = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SUSIE"),
+                    ld_ref = c("UKB", "1KGphase3"), 
                     mean_SS = 3500)
+

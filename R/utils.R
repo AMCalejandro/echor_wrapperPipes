@@ -38,7 +38,7 @@ gwas_lead_snps = function(data,
   data = data %>%
     dplyr::filter(!!pvvar <= pval_thres) %>%
     group_by(!!chrvar) %>%
-    dplyr::arrange(!!pval_col) %>%
+    dplyr::arrange(!!pvvar) %>%
     dplyr::filter(row_number() == 1) %>%
     ungroup()
 

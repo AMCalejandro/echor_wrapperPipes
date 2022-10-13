@@ -1,2 +1,7 @@
-/mnt/rreal/RDS/acarrasco/ANALYSES_WORKSPACE/EARLY_PD/POST_GWAS/ECHOLOCATOR/for_echolocatoR_axialOutcome_3.tsv
-/mnt/rreal/RDS/acarrasco/ANALYSES_WORKSPACE/EARLY_PD/POST_GWAS/ECHOLOCATOR/DEVELOPING_FINEMAPPING_PIPELINE
+/mnt/rreal/RDS/acarrasco/ANALYSES_WORKSPACE/EARLY_PD/METANALYSIS/modelBasic/axial/PPMI_OPDC_PROBAND_PDSTAT_DIGPD_PDBP/metal_pdstat.ppmiBugCorrected.proband.opdc.digpd.pdbp.MAFvar0.15.HetPval0.05.HetISQ80.axialOutcome_1.tbl
+/mnt/rreal/RDS/acarrasco/ANALYSES_WORKSPACE/EARLY_PD/POST_GWAS/AXIAL_modelBasic/ECHOLOCATOR
+gwasqced.tsv
+
+#Path to GWAS
+#Path to WD
+#Desired name of the QC GWAS
